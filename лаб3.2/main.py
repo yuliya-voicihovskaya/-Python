@@ -65,6 +65,10 @@ class PaperBook(Book):
         """ Возвращает строковое представление бумажной книги. """
         return f"Бумажная книга {self.name}. Автор {self.author}. Страниц: {self.pages}"
 
+    def __repr__(self):
+        """ Возвращает формальное строковое представление бумажной книги. """
+        return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, pages={self.pages})"
+
 
 class AudioBook(Book):
     """ Класс для аудиокниг. """
@@ -93,13 +97,17 @@ class AudioBook(Book):
         :param value: Длительность (положительное число)
         :raises ValueError: Если длительность не положительная
         """
-        if not isinstance(value, (float)) or value <= 0:
+        if not isinstance(value, float) or value <= 0:
             raise ValueError("Продолжительность должна быть положительным числом")
-        self._duration = float(value)
+        self._duration = value
 
     def __str__(self):
         """ Возвращает строковое представление аудиокниги. """
         return f"Аудиокнига {self.name}. Автор {self.author}. Длительность: {self.duration:.2f} часов"
+
+    def __repr__(self):
+        """ Возвращает формальное строковое представление аудиокниги. """
+        return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, duration={self.duration:.2f})"
 
 # Пример использования
 paper_book = PaperBook("1984", "Джордж Оруэлл", 328)
